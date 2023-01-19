@@ -65,3 +65,9 @@ def main():
         elif move.lower() == 'p' and computer_move.lower() == 's':
             loss += 1
             print('You lose!')
+
+if __name__ == '__main__':
+    try:
+        main()           
+    except KeyboardInterrupt:
+        exit('Thanks for playing!')
