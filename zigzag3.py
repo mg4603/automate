@@ -1,5 +1,7 @@
 from time import sleep
 
+DELAY = 0.1
+
 def main():
     indent  = 0
     indent_increasing = True
