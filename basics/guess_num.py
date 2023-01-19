@@ -1,5 +1,15 @@
 from random import randint
 
+def get_guess(low, high):
+    while True:
+        print('Take a guess.')
+        response = input('> ')
+        if response.is_decimal():
+            return int(response)
+        print(
+            'Response should be a number between {} and {}(inclusive).'.format(
+                low, high
+        ))
 
 def main():
     low = 1
