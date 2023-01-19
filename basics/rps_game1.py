@@ -41,28 +41,27 @@ def main():
         move = get_move()
         print('%s versus...' % get_word(move))
         sleep(1)
-        computer_move = choice(('r', 'p', 's'))
+        computer_move = choice(('R', 'P', 'S'))
         print(get_word(computer_move))
 
         if move == computer_move:
             ties += 1
             print('It\'s a tie!')
-        elif move == 'r' and computer_move == 's':
-            wins + 1
-            print('You win!')
-        elif move == 'p' and computer_move == 'r':
+        elif move.lower() == 'r' and computer_move.lower() == 's':
             wins += 1
             print('You win!')
-        elif move == 's' and computer_move == 'p':
+        elif move.lower() == 'p' and computer_move.lower() == 'r':
             wins += 1
             print('You win!')
-        elif move == 's' and computer_move == 'r':
+        elif move.lower() == 's' and computer_move.lower() == 'p':
+            wins += 1
+            print('You win!')
+        elif move.lower() == 's' and computer_move.lower() == 'r':
             loss += 1
             print('You lose!')
-        elif move == 'r' and computer_move == 'p':
+        elif move.lower() == 'r' and computer_move.lower() == 'p':
             loss += 1
             print('You lose!')
-        elif move == 'p' and computer_move == 's':
+        elif move.lower() == 'p' and computer_move.lower() == 's':
             loss += 1
             print('You lose!')
-           
