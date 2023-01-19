@@ -27,3 +27,9 @@ def main():
         number = collatz(number)
         if number == 1:
             print(1)
+
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        exit()
