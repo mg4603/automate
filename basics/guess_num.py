@@ -1,10 +1,13 @@
 from random import randint
+from sys import exit
 
 def get_guess(low, high):
     while True:
-        print('Take a guess.')
-        response = input('> ')
-        if response.is_decimal():
+        print('Take a guess (or QUIT to quit.)')
+        response = input('> ').upper()
+        if response == 'QUIT':
+            exit()
+        if response.isdecimal():
             return int(response)
         print(
             'Response should be a number between {} and {}(inclusive).'.format(
@@ -20,7 +23,6 @@ def main():
 
     print('I am thinking of  a number between 1 and 20.')
     while True:
-        print('Take a guess.')
         guess = get_guess(low, high)
         guesses += 1
 
@@ -35,8 +37,12 @@ def main():
                 ))
             else:
                 print('Good job! You guessed my number in {} guess!'.format(
-                    guess
+                    guesses
                 ))
+            break
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        exit()
