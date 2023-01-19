@@ -37,3 +37,6 @@ def main():
                 print('Good job! You guessed my number in {} guess!'.format(
                     guess
                 ))
+
+if __name__ == '__main__':
+    main()
