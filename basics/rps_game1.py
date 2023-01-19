@@ -1,5 +1,8 @@
 from random import choice
 from sys import exit
+from time import sleep
+
+DELAY = 1
 
 def get_move():
     print('Enter your move: (r)ock (p)aper (s)cissors or (q)uit')
@@ -21,3 +24,4 @@ def get_word(code):
         return 'PAPER'
     elif code == 'S':
         return 'Scissors'
+
