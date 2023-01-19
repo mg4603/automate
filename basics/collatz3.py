@@ -10,3 +10,12 @@ def collatz(num):
         res = 3 * num + 1
         print(res)
         return res
+
+def get_number():
+    print('Enter a whole number:')
+    while True:
+        num = input('> ')
+        if num.isdecimal():
+            return int(num)
+        print('Invalid input. Enter a whole number.')
+    
