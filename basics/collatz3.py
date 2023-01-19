@@ -4,11 +4,9 @@ def collatz(num):
 
     if num % 2 == 0:
         res = num // 2
-        print(res)
         return res
-    elif num % 2 == 0:
+    elif num % 2 == 1:
         res = 3 * num + 1
-        print(res)
         return res
 
 def get_number():
@@ -18,4 +16,14 @@ def get_number():
         if num.isdecimal():
             return int(num)
         print('Invalid input. Enter a whole number.')
+
+def main():
     
+    print('Collatz Sequence')
+    number = get_number()
+
+    while number != 1:
+        print(number, end=', ', flush=True)
+        number = collatz(number)
+        if number == 1:
+            print(1)
