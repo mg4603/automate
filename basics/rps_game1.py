@@ -1,4 +1,4 @@
-from random import randint
+from random import choice
 from sys import exit
 
 def get_move():
@@ -12,3 +12,12 @@ def get_move():
             return response
         
         print('Enter one of "R", "P", "S" or "Q"')
+
+def get_word(code):
+    assert code in ('R', 'P', 'S'), 'Invalid code'
+    if code == 'R':
+        return 'ROCK'
+    elif code == 'P':
+        return 'PAPER'
+    elif code == 'S':
+        return 'Scissors'
