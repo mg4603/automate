@@ -72,6 +72,24 @@ class FourOneRollsWithStopZombie:
                 return
             num_rolls -= 1
 
+class MoreShotgunsStopZombie:
+    def __init__(s, name):
+        s.name = name
+    
+    def turn(s, game_state):
+        brains = 0
+        shotguns = 0
+        while True:
+            dice_roll_result = roll()
+            if dice_roll_result == None:
+                return
+            
+            brains += dice_roll_result['brains']
+            shotguns += dice_roll_result['shotgun']
+
+            if shotguns > brains:
+                return
+
 def main():
     zombies = (
     RandomCoinFlipZombie(name='Random'),
@@ -83,7 +101,7 @@ def main():
     TwoBrainsThenStopsZombie(name='Stops at 2 brains'),
     TwoShotgunsThenStopsZombie(name='Stops at 2 shotguns - created'),
     FourOneRollsWithStopZombie(name='Rolls 1-4 times but stops at 2 shotguns'),
-    # MoreShotgunsStopZombie(name='Stops if more shotguns than brains')
+    MoreShotgunsStopZombie(name='Stops if more shotguns than brains')
     )
 
     runTournament(zombies=zombies, numGames=1000)
