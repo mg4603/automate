@@ -34,4 +34,6 @@ def main():
         total_streaks += num_of_flips - streak_length + 1
     
     print('Chance of streak: {}%'.format(num_of_streaks / total_streaks))
-    
+
+if __name__ == '__main__':
+    main()
