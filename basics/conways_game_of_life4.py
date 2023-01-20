@@ -5,7 +5,7 @@ DEAD = ' '
 ALIVE = '#'
 
 WIDTH = 60
-
+HEIGHT = 40
 
 
 if __name__ == '__main__':
