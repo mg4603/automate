@@ -11,6 +11,7 @@ HEIGHT = 40
 DELAY = 1
 
 def draw_board(board):
+    print('\n' * 5)
     for y in range(HEIGHT):
         for x in range(WIDTH):
             print(board[y][x], end='')
