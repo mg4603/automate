@@ -17,3 +17,6 @@ def draw_pic_grid(grid):
         for x in range(width):
             print(grid[x][y], end='')
         print()
+
+if __name__ == '__main__':
+    draw_pic_grid(GRID)
