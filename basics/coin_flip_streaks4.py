@@ -22,3 +22,16 @@ def id_streak(flips, streak_length):
             num_of_streaks += 1
     return num_of_streaks
 
+def main():
+    num_of_streaks = 0
+    total_streaks = 0
+    num_of_flips = 100
+    streak_length = 6
+    for _ in range(10_000):
+        num_of_streaks += id_streak(
+                simulate_flips(num_of_flips), streak_length
+            )
+        total_streaks += num_of_flips - streak_length + 1
+    
+    print('Chance of streak: {}%'.format(num_of_streaks / total_streaks))
+    
