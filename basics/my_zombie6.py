@@ -31,12 +31,28 @@ class TwoBrainsThenStopsZombie:
         brains = 0
         while True:
             dice_roll_results = roll()
-            
+
             if dice_roll_results == None:
                 return
 
             brains += dice_roll_results['brains']
             if brains >= 2:
+                return
+
+class TwoShotgunsThenStopsZombie:
+    def __init__(s, name):
+        s.name = name
+
+    def turn(s, game_state):
+        shotguns = 0
+        while True:
+            dice_roll_results = roll()
+
+            if dice_roll_results == None:
+                return
+            
+            shotguns += dice_roll_results['shotgun']
+            if shotguns >= 2:
                 return
 
 def main():
@@ -48,7 +64,7 @@ def main():
     # Add any other zombie players here.
     RandomContinueZombie(name='Random continue'),
     TwoBrainsThenStopsZombie(name='Stops at 2 brains'),
-    # TwoShotgunsThenStopsZombie(name='Stops at 2 shotguns - created'),
+    TwoShotgunsThenStopsZombie(name='Stops at 2 shotguns - created'),
     # FourOneRollsWithStopZombie(name='Rolls 1-4 times but stops at 2 shotguns'),
     # MoreShotgunsStopZombie(name='Stops if more shotguns than brains')
     )
