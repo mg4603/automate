@@ -14,4 +14,6 @@ def main():
 
     #runTournament(zombies=zombies, numGames=1000)
     runWebGui(zombies=zombies, numGames=1000)
-    
+
+if __name__ == '__main__':
+    main()
