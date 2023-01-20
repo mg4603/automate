@@ -8,8 +8,10 @@ def display_inventory(inventory):
     print('Total number of items: {}'.format(total))
 
 def main():
-    stuff = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}
-    display_inventory(stuff)
+    inventory = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}
+    dragon_loot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby']
+    inventory = add_to_inventory(inventory, dragon_loot)
+    display_inventory(inventory)
 
 if __name__ == '__main__':
     main()
