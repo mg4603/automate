@@ -9,3 +9,16 @@ def simulate_flips(num_of_flips):
             flips.append('T')
     
     return flips
+
+def id_streak(flips, streak_length):
+    num_of_streaks = 0
+    flips = ''.join(flips)
+    head_streak = 'H' * streak_length
+    tail_streak = 'T' * streak_length
+
+    for i in range(len(flips) - streak_length + 1):
+        if flips[i: i + streak_length] == head_streak or \
+                flips[i: i + streak_length] == tail_streak:
+            num_of_streaks += 1
+    return num_of_streaks
+
