@@ -10,3 +10,6 @@ def transform(input_list):
         input_list[-1]
         )
 
+def main():
+    spam = ['apples', 'bananas', 'tofu', 'cats']
+    print(transform(spam))
