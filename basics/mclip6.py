@@ -5,10 +5,17 @@ try:
     from pyperclip import copy
 except ImportError:
     exit('This program requires pyperclip.')
-    
+from argparse import ArgumentParser
+
+def parse_args():
+    parser = ArgumentParser(description='Key phrase argument parser')
+    parser.add_argument('key_phrase', type=str)
+    return parser.parse_args()
+
+
 def main():
     args = parse_args()
-    key = args['key_phrase']
+    key = args.key_phrase
     if key in multi_clipboard:
         try:
             copy(multi_clipboard[key])
