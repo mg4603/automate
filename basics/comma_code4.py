@@ -13,3 +13,6 @@ def transform(input_list):
 def main():
     spam = ['apples', 'bananas', 'tofu', 'cats']
     print(transform(spam))
+
+if __name__ == '__main__':
+    main()
