@@ -5,5 +5,6 @@ except ImportError:
     exit('This script requires pyperclip.')
 
 
+
 if __name__ == '__main__':
     main()
