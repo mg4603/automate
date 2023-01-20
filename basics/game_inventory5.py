@@ -5,7 +5,16 @@ def display_inventory(inventory):
     for key, val in inventory.items():
         print('{} {}'.format(key.title().ljust(max_length), val))
         total += val
+    print()
     print('Total number of items: {}'.format(total))
+
+def add_to_inventory(inventory, loot):
+    for item in loot:
+        if not item in inventory:
+            inventory[item] = 1
+        else:
+            inventory[item] += 1
+    return inventory
 
 def main():
     inventory = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}
