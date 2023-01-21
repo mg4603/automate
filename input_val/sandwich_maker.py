@@ -4,6 +4,13 @@ try:
 except ImportError:
     exit('This program requires pyinputplus.')
 
+def get_bread_cost(bread):
+    if bread == 'wheat':
+        return 1.8
+    elif bread == 'white':
+        return 1
+    elif bread == 'sourdough':
+        return 2
 
 
 def main():
