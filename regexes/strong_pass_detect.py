@@ -15,6 +15,7 @@ from re import compile
 length_regex = compile(r'\w{8,}')
 digit_regex = compile(r'\d')
 upper_regex = compile(r'[A-Z]')
+lower_regex = compile('r[a-z]')
 def main():
     regexes = [length_regex, digit_regex, upper_regex, lower_regex]
     print('Strong Password')
