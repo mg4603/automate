@@ -12,6 +12,15 @@ def get_bread_cost(bread):
     elif bread == 'sourdough':
         return 2
 
+def get_filling_cost(filling):
+    if filling == 'chicken':
+        return 2
+    elif filling == 'turkey':
+        return 3
+    elif filling == 'ham':
+        return 3.5
+    elif filling == 'tofu':
+        return 1.5
 
 def main():
     print('Sandwich Maker')
