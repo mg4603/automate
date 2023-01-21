@@ -16,6 +16,8 @@ try:
 except ImportError:
     exit('This program requires pyinpuplus to run.')
 
+DELAY = 1
+
 def main():
     score = 0
     num_of_questions = 10
