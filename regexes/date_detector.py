@@ -4,10 +4,22 @@
 3) add function to validate if date exists
 4) paste valid dates to clipboard
 '''
+from re import compile, VERBOSE
 try:
     from pyperclip import copy, paste
 except ImportError:
     exit('This program requires pyperclip.')
+
+date_regex = compile(
+    r'''
+    ([0-2][1-9]|3[01])
+    (\s|-|/)
+    (0[1-9]|1[0-2])
+    (\s|-|/)
+    ([12][0-9]{3})
+    ''',
+    VERBOSE
+)
 
 def main():
     text = paste()
