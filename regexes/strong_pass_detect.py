@@ -15,7 +15,7 @@ from re import compile
 length_regex = compile(r'\w{8,}')
 digit_regex = compile(r'\d')
 upper_regex = compile(r'[A-Z]')
-lower_regex = compile('r[a-z]')
+lower_regex = compile(r'[a-z]')
 
 def is_strong(password, regexes):
     for regex in regexes:
