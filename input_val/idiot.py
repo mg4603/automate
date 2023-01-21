@@ -9,6 +9,13 @@ try:
 except ImportError:
     exit('This program requires pyinputplus.')
 
+def main():
+    while True:
+        prompt = 'Want to know how to keep an idiot busy for hours?\n'
+        response = inputYesNo(prompt)
+        if response == 'no':
+            break
+    exit('Thanks for playing!')
 
 if __name__ == '__main__':
     try:
