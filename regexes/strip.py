@@ -4,6 +4,14 @@
 3) if second argument doesn't exist remove whitespaces at start and end
 '''
 
+from re import sub, escape
+
+def strip(string, char=''):
+    if char == '':
+        return sub(r'^\s|\s$', '', string)
+    else:
+        return sub(escape(char), '', string)
+
 def main():
     print('STRIP')
     print()
