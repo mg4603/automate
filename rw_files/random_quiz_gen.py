@@ -5,6 +5,7 @@
 4) write quizzes to 35 text files
 5) write answer keys to 35 text files.
 '''
+from random import shuffle, choice
 from sys import exit
 try:
     from pyinputplus import inputNum
@@ -65,6 +66,36 @@ qa_dict = {
     'Wyoming': 'Cheyenne'
 }
 
+def get_quiz(qa_dict, num):
+    answers = qa_dict.values()
+    questions = qa_dict.keys()
+    shuffle(questions)
+
+    quiz_str = '{}:\n\n{}:\n\n{}:\n\n{}{} (Form {})\n\n'.format(
+        'Name',
+        'Date',
+        'Period',
+        ' ' * 20,
+        'State Capitals Quiz',
+        num
+    )
+    ans_str = ''
+    for i, question in enumerate(question):
+        correct_answer = qa_dict[question]
+        answer_options = get_answer_options(answers, correct_answer)
+        quiz_str += '{}. What is the capital of {}?\n'.format(
+            i + 1,
+            question
+        )
+        for j, answer_option in enumerate(answer_options):
+            quiz_str += '{}. {}\n'.format('ABCD'[j], answer_option)
+        quiz_str += '\n'
+        ans_str += '{}. {}'.format(
+            i + 1, 'ABCD'[answer_option.find(correct_answer)]
+        )
+    return quiz_str, ans_str
+
+
 def main():
     cwd = Path('.')
     output_dir = cwd / 'quizzes'
@@ -73,7 +104,7 @@ def main():
     print('Enter number of quizzes')
     num_of_quizzes = inputNum(min=1, prompt='> ')
     for i in range(num_of_quizzes):
-        quiz, answers = get_quiz(qa_dict)
+        quiz, answers = get_quiz(qa_dict, i + 1)
         quiz_file = output_dir / ('quiz_{}.txt'.format(i + 1))
         answer_file = output_dir / ('answer_{}.txt'.format(i + 1))
         with quiz_file.open('w') as file:
