@@ -11,6 +11,17 @@ try:
 except ImportError:
     exit('This program requires pyperclip')
 
+phone_regex = compile(
+    r'''
+    (\d{3}|\(\d{3}\))?
+    (\s|-|\.)?
+    (\d{3})
+    (\s|-|\.)
+    (\d{4})
+    (\s*(ext|x|ext.)\s*(\d{2,5}))?
+    '''
+    ,VERBOSE
+)
 
 def main():
     text = paste()
@@ -19,7 +30,7 @@ def main():
     emails = email_regex.findall(text)
 
     if len(phone_numbers) == 0 and len(emails) == 0:
-        
+
 
     formatted_string = get_formatted_output(phone_numbers, emails)
     print('Formatted output:')
