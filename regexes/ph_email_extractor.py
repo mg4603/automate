@@ -12,5 +12,21 @@ except ImportError:
     exit('This program requires pyperclip')
 
 
+def main():
+    text = paste()
+
+    phone_numbers = phone_regex.findall(text)
+    emails = email_regex.findall(text)
+
+    if len(phone_numbers) == 0 and len(emails) == 0:
+        
+
+    formatted_string = get_formatted_output(phone_numbers, emails)
+    print('Formatted output:')
+    print(formatted_string)
+    
+    copy(formatted_string)
+    print('(Copied to clipboard.)')
+
 if __name__ == '__main__':
     main()
