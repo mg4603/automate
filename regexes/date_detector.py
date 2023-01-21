@@ -21,11 +21,39 @@ date_regex = compile(
     VERBOSE
 )
 
+def get_valid_dates(dates):
+    valid_dates = []
+    for date in dates:
+        day, _, month, _, year = date
+        if month in (
+                '01', '03', '05', '07', '08', '10', '12'
+                ):
+            if 0 < int(day) <= 31:
+                valid_dates.append(date)
+        elif month in (
+                '04', '06', '09', '11'
+                ):
+            if 0 < int(day) <= 30:
+                valid_dates.append(date)
+        else:
+            year = int(year)
+            if year % 400 == 0:
+                if 0 < int(day) <= 29:
+                    valid_dates.append(date)
+            elif year % 4 == 0 and not year % 100 == 0:
+                if 0 < int(day) <= 29:
+                    valid_dates.append(date)
+            else:
+                if 0 < int(day) <= 28:
+                    valid_dates.append(date)
+    return valid_dates
+
 def main():
     text = paste()
 
     dates = date_regex.findall(text)
     valid_dates = get_valid_dates(dates)
+    print(valid_dates)
     formatted_str = get_formatted_dt_str(valid_dates)
 
 
