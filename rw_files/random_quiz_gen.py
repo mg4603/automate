@@ -76,8 +76,8 @@ def get_answer_options(answers, correct_answer):
     return answer_options
 
 def get_quiz(qa_dict, num):
-    answers = qa_dict.values()
-    questions = qa_dict.keys()
+    answers = list(qa_dict.values())
+    questions = list(qa_dict.keys())
     shuffle(questions)
 
     quiz_str = '{}:\n\n{}:\n\n{}:\n\n{}{} (Form {})\n\n'.format(
@@ -89,7 +89,7 @@ def get_quiz(qa_dict, num):
         num
     )
     ans_str = ''
-    for i, question in enumerate(question):
+    for i, question in enumerate(questions):
         correct_answer = qa_dict[question]
         answer_options = get_answer_options(answers, correct_answer)
         quiz_str += '{}. What is the capital of {}?\n'.format(
@@ -99,8 +99,8 @@ def get_quiz(qa_dict, num):
         for j, answer_option in enumerate(answer_options):
             quiz_str += '{}. {}\n'.format('ABCD'[j], answer_option)
         quiz_str += '\n'
-        ans_str += '{}. {}'.format(
-            i + 1, 'ABCD'[answer_option.find(correct_answer)]
+        ans_str += '{}. {}\n'.format(
+            i + 1, 'ABCD'[answer_options.index(correct_answer)]
         )
     return quiz_str, ans_str
 
@@ -108,7 +108,7 @@ def get_quiz(qa_dict, num):
 def main():
     cwd = Path('.')
     output_dir = cwd / 'quizzes'
-    output_dir.mkdir(parents=True)
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     print('Enter number of quizzes')
     num_of_quizzes = inputNum(min=1, prompt='> ')
