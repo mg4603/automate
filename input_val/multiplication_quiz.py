@@ -25,11 +25,13 @@ def main():
         num1 = randint(1, 9)
         num2 = randint(1, 9)
         try:
-            prompt = '#{}: {} x {}'.format(i + 1, num1, num2)
+            prompt = '#{}: {} x {} = '.format(i + 1, num1, num2)
             inputNum(
                 prompt, 
-                allowRegexes='^{}$'.format(num1 * num2),
-                blockRegexes=('.*', 'Incorrect!')
+                allowRegexes=['^{}$'.format(num1 * num2)],
+                blockRegexes=[('.*', 'Incorrect!')],
+                limit=3,
+                timeout=8
             )
         except RetryLimitException:
             print('Out of tries!')
