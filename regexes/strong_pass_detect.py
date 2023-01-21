@@ -10,6 +10,10 @@ steps:
 3) return true or false accordingly
 
 '''
+from re import compile
+
+length_regex = compile(r'\w{8,}')
+
 def main():
     regexes = [length_regex, digit_regex, upper_regex, lower_regex]
     print('Strong Password')
