@@ -5,6 +5,7 @@
 4) paste valid dates to clipboard
 '''
 from re import compile, VERBOSE
+from sys import exit
 try:
     from pyperclip import copy, paste
 except ImportError:
@@ -48,16 +49,25 @@ def get_valid_dates(dates):
                     valid_dates.append(date)
     return valid_dates
 
+def get_formatted_dt_str(valid_dates):
+    formatted_str = ''
+    for date in valid_dates:
+        formatted_str += '/'.join([date[0], date[2], date[4]]) + '\n'
+    return formatted_str
+
 def main():
     text = paste()
 
     dates = date_regex.findall(text)
+    if len(dates) == 0:
+        exit('No valid dates found.')
+
     valid_dates = get_valid_dates(dates)
-    print(valid_dates)
     formatted_str = get_formatted_dt_str(valid_dates)
 
-
+    print('Dates:')
     print(formatted_str)
+
     copy(formatted_str)
     print('(Copied to clipboard.')
 
