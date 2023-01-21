@@ -67,6 +67,7 @@ def main():
     has_lettuce = inputYesNo('Do you want lettuce in your sandwich?\n')
     print()
     has_tomato = inputYesNo('Do you want tomato in your sandwich?\n')
+    print()
 
     num_sandwiches = inputNum('How many sandwiches do you want?\n')
     print()
