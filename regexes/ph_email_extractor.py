@@ -32,6 +32,31 @@ email_regex = compile(
     VERBOSE
 )
 
+def get_formatted_out(phone_numbers, emails):
+    formatted_str = ''
+    
+    if len(phone_numbers):
+        for i, ph_num in enumerate(phone_numbers):
+            if ph_num[0]:
+                phone_numbers[i] = '-'.join([ph_num[0], ph_num[2], ph_num[4]])
+            else:
+                phone_numbers[i] = '-'.join([ph_num[2], ph_num[4]])
+
+            if ph_num[7] != '':
+                phone_numbers[i] += ' x' + ph_num[7]
+    
+        formatted_str += 'Phone Numbers:\n\t'
+        formatted_str += '\n\t'.join(phone_numbers)
+    
+    if len(emails):
+        for i, email in enumerate(emails):
+            emails[i] = email[0]
+    
+        formatted_str += '\nEmails:\n\t'
+        formatted_str += '\n\t'.join(emails)
+
+    return formatted_str
+
 def main():
     text = paste()
 
@@ -39,9 +64,10 @@ def main():
     emails = email_regex.findall(text)
 
     if len(phone_numbers) == 0 and len(emails) == 0:
+        print('No phone number or emails found.')
+        exit()
 
-
-    formatted_string = get_formatted_output(phone_numbers, emails)
+    formatted_string = get_formatted_out(phone_numbers, emails)
     print('Formatted output:')
     print(formatted_string)
     
