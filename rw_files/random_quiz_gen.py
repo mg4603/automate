@@ -66,6 +66,15 @@ qa_dict = {
     'Wyoming': 'Cheyenne'
 }
 
+def get_answer_options(answers, correct_answer):
+    answer_options = [correct_answer]
+    while len(answer_options) < 4:
+        answer_option = choice(answers)
+        if answer_option not in answer_options:
+            answer_options.append(answer_option)
+    shuffle(answer_options)
+    return answer_options
+
 def get_quiz(qa_dict, num):
     answers = qa_dict.values()
     questions = qa_dict.keys()
@@ -114,5 +123,4 @@ def main():
 
 from pprint import pprint
 if __name__ == '__main__':
-    # main()
-    pprint(qa_dict)
+    main()
