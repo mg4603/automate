@@ -13,6 +13,7 @@ steps:
 from re import compile
 
 length_regex = compile(r'\w{8,}')
+digit_regex = compile(r'\d')
 
 def main():
     regexes = [length_regex, digit_regex, upper_regex, lower_regex]
