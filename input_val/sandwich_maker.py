@@ -22,6 +22,14 @@ def get_filling_cost(filling):
     elif filling == 'tofu':
         return 1.5
 
+def get_cheese_cost(cheese):
+    if cheese == 'cheddar':
+        return 2.5
+    elif cheese == 'swiss':
+        return 2
+    elif cheese == 'mozzarella':
+        return 1
+
 def main():
     print('Sandwich Maker')
 
