@@ -11,7 +11,8 @@ except ImportError:
     exit('This program requires pyperclip.')
 from shelve import open
 
-error_msg = '''Unrecognized option
+help_msg = '''
+python3 mcb.py [-h|--help]          : help menu
 
 Usage:
     python3 mcb.py list             : to list keywords
@@ -22,7 +23,7 @@ Usage:
     
 '''
 
-def parse_args(error_msg):
+def parse_args(help_msg):
     args = {}
     if len(argv) == 3:
         if argv[1] == 'save':
@@ -32,9 +33,11 @@ def parse_args(error_msg):
             args['option'] = 'delete'
             args['keyword'] = argv[2]
         else:
-            exit(error_msg)
+            exit(help_msg)
     elif len(argv) == 2:
-        if argv[1] == 'list':
+        if argv[1] == '-h' or argv[1] == '--help':
+            exit(help_msg)
+        elif argv[1] == 'list':
             args['option'] = 'list'
             args['keyword'] = ''
         elif argv[1] == 'delete':
@@ -46,13 +49,15 @@ def parse_args(error_msg):
     return args
 
 def main():
-    args = parse_args(error_msg)
+    args = parse_args(help_msg)
 
     mcb = open('mcb')
     
     if args['option'] == 'save':
         mcb[args['keyword']] = paste()
     elif args['option'] == 'list':
+        if len(mcb.keys()) == 0:
+            exit('Multi-clipboard empty')
         print('\n'.join(mcb.keys()))
     elif args['option'] == '':
         try:
