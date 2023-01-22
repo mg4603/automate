@@ -6,6 +6,7 @@
 5) print result and write to outfile
 '''
 from pathlib import Path
+from re import sub
 from sys import exit
 try:
     from pyinputplus import inputStr
@@ -25,18 +26,24 @@ def main():
     with in_file.open('r') as file:
         mad_lib_in = file.read()
     
-    mad_lib_out = ''
+    mad_lib_out = []
     for word in mad_lib_in.split(' '):
-        if word == 'ADJECTIVE':
-            mad_lib_out += inputStr(prompt='Enter an adjective:\n')
-        elif word == 'NOUN':
-            mad_lib_out += inputStr(prompt='Enter a noun:\n')
-        elif word == 'VERB':
-            mad_lib_out += inputStr(prompt='Enter a verb:\n')
-        elif word == 'ADVERB':
-            mad_lib_out += inputStr(prompt='Enter an adverb:\n')
+        if 'ADJECTIVE' in word:
+            adjective = inputStr(prompt='Enter an adjective:\n')
+            new_word = sub('ADJECTIVE', adjective, word)
+        elif 'NOUN' in word:
+            noun = inputStr(prompt='Enter a noun:\n')
+            new_word = sub('NOUN', noun, word)
+        elif 'VERB' in word:
+            verb = inputStr(prompt='Enter a verb:\n')
+            new_word = sub('VERB', verb, word)
+        elif 'ADVERB' in word:
+            adverb = inputStr(prompt='Enter an adverb:\n')
+            new_word = sub('ADVERB', adverb, word)
         else:
-            mad_lib_out += word
+            new_word = word
+        mad_lib_out.append(new_word)
+    mad_lib_out = ' '.join(mad_lib_out)
             
     out_file_name = inputStr('Enter output file name:\n')
     print(mad_lib_out)
