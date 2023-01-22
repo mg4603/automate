@@ -7,6 +7,14 @@
 from pathlib import Path
 from re import escape, compile
 
+def get_directory():
+    while True:
+        print('Enter directory (blank for cwd):')
+        dir_name = input('> ')
+        if Path(dir_name).exists():
+            return Path(dir_name)
+        print('Directory doesn\'t exist.\n')
+
 def main():
     print('Interactive Grep')
     print()
