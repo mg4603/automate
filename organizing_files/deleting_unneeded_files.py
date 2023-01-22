@@ -6,6 +6,7 @@
 '''
 from pathlib import Path
 from os import walk
+from os.path import join
 
 def get_src_path():
     print('Enter source directory path to check for large files:')
@@ -27,9 +28,12 @@ def main():
     large_files = []
     for folder_name, _, file_names in walk(src_path.absolute()):
         for file_name in file_names:
-            file = Path(file_name)
-            if file.stat().st_size // (1024 * 1024) > 100:
-                large_files.append(str(file.absolute()))
+            file = Path(join(folder_name, file_name))
+            try:
+                if file.stat().st_size // (1024 * 1024) > 100:
+                    large_files.append(str(file.absolute()))
+            except:
+                pass
     
     if len(large_files) > 0:
         print('Files larger than 100MB:')
