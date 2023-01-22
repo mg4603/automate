@@ -22,7 +22,28 @@ Usage:
     
 '''
 
-
+def parse_args(error_msg):
+    args = {}
+    if len(argv) == 3:
+        if argv[1] == 'save':
+            args['option'] = 'save'
+            args['keyword'] = argv[2]
+        elif argv[1] == 'delete':
+            args['option'] = 'delete'
+            args['keyword'] = argv[2]
+        else:
+            exit(error_msg)
+    elif len(argv) == 2:
+        if argv[1] == 'list':
+            args['option'] = 'list'
+            args['keyword'] = ''
+        elif argv[1] == 'delete':
+            args['option'] = 'delete'
+            args['keyword'] = ''
+        else:
+            args['option'] = ''
+            args['keyword'] = argv[1] 
+    return args
 
 def main():
     args = parse_args(error_msg)
@@ -34,7 +55,10 @@ def main():
     elif args['option'] == 'list':
         print('\n'.join(mcb.keys()))
     elif args['option'] == '':
-        copy(mcb[args['keyword']])
+        try:
+            copy(mcb[args['keyword']])
+        except KeyError:
+            exit('Key doesn\'t exist\nTo see a list of keys try: python3 mcb.py list ')
     elif args['option'] == 'delete':
         if args['keyword'] != '':
             mcb.pop(args['keyword'])
