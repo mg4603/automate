@@ -56,7 +56,9 @@ def main():
     print('Enter prefix to search for:')
     prefix = input('> ')
 
-    print('Starting:')
+    print()
+    print('Starting')
+    print()
     files = src_dir_path.glob('*')
     files = [file.name for file in files if prefix in file.name]
     gaps = get_gaps(files)
@@ -65,7 +67,7 @@ def main():
         print('\n'.join(gaps))
     else:
         print('No gap files found.')
-
+    print()
     print('Done')
 
 if __name__ == '__main__':
