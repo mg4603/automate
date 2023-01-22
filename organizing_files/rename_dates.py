@@ -5,6 +5,8 @@
 '''
 from re import compile, VERBOSE
 from pathlib import Path
+from shutil import move
+from os.path import join
 
 american_date_regex = compile(
     r'''
@@ -24,6 +26,13 @@ def get_dir_path():
         if Path(dir_name).is_dir():
             return Path(dir_name)
         print('Directory doesn\'t exist')
+
+def rename_files(dir_path, american_date_regex):
+    for file in dir_path.glob('*'):
+        mo = american_date_regex.search(str(file.name))
+        if mo:
+            new_name = '-'.join([mo.group(2), mo.group(1), mo.group(3)]) + mo.group(4)
+            move(str(file), join(str(file.absolute().parent), new_name))
 
 def main():
     print('Rename Date files')
