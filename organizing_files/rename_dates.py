@@ -4,6 +4,7 @@
 3) rename files to american date style
 '''
 from re import compile, VERBOSE
+from pathlib import Path
 
 american_date_regex = compile(
     r'''
@@ -16,6 +17,14 @@ american_date_regex = compile(
     ''',
     VERBOSE
 )
+def get_dir_path():
+    print('Enter path of dir with files to rename:')
+    while True:
+        dir_name = input('> ')
+        if Path(dir_name).is_dir():
+            return Path(dir_name)
+        print('Directory doesn\'t exist')
+
 def main():
     print('Rename Date files')
     print()
