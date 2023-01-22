@@ -7,6 +7,18 @@
 from pathlib import Path
 from re import escape, compile
 
+def get_src_path():
+    print('Enter src path dir to copy files from:')
+    while True:
+        src_name = input('> ')
+        src_path = Path(src_name)
+        if src_path.exists():
+            if src_path.is_dir():
+                return src_path
+            print('Source path isn\'t a directory')
+        else:
+            print('Source path doesn\'t exist.')
+
 def main():
     print('Selective Copy')
     print()
