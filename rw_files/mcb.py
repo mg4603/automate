@@ -4,22 +4,34 @@
     * list - copies all keywords to clipboard
     * <keyword> - copies val to clipboard
 '''
-from sys import exit
+from sys import exit, argv
 try:
     from pyperclip import copy, paste
 except ImportError:
     exit('This program requires pyperclip.')
 from shelve import open
 
+error_msg = '''Unrecognized option
+
+Usage:
+    python3 mcb.py list             : to list keywords
+    python3 mcb.py <keyword>        : to get keyword val
+    python3 mcb.py save <keyword>   : save clipboard contents under keyword
+    python3 mcb.py delete <keyword> : delete multi-clipboard contents under keyword
+    python3 mcb.py delete           : clear multi-clipboard
+    
+'''
+
+
 
 def main():
-    args = parse_args()
+    args = parse_args(error_msg)
 
     mcb = open('mcb')
     
     if args['option'] == 'save':
         mcb[args['keyword']] = paste()
-    elif args['options'] == 'list':
+    elif args['option'] == 'list':
         print('\n'.join(mcb.keys()))
     elif args['option'] == '':
         copy(mcb[args['keyword']])
