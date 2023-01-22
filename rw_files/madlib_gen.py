@@ -12,6 +12,13 @@ try:
 except ImportError:
     exit('This program requires pyinputplus to run.')
 
+def get_input_file():
+    while True:
+        in_file_name = input('Enter input file name:\n')
+        if Path(in_file_name).exists():
+            return Path(in_file_name)
+        print('File doesn\'t exist.\n')
+
 def main():
     print('Mad Libs')
     in_file = get_input_file()
@@ -33,7 +40,7 @@ def main():
             
     out_file_name = inputStr('Enter output file name:\n')
     print(mad_lib_out)
-    
+
     with Path(out_file_name).open('w') as out_file:
         out_file.write(mad_lib_out)
     
