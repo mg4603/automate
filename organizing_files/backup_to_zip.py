@@ -9,6 +9,7 @@ from pathlib import Path
 from zipfile import ZipFile, ZIP_DEFLATED
 from os import walk
 from os.path import basename, join
+from re import sub
 
 def get_zip_src():
     print('Enter file or directory to backup:')
@@ -20,13 +21,20 @@ def get_zip_src():
 
 def create_backup(path, destination_path):
     file_to_backup = str(path.absolute().name)
-    i = 1
-    while True:
-        zip_file_name = '{}_{}.zip'.format(file_to_backup, i)
-        zip_file_path = destination_path / zip_file_name
-        if not zip_file_path.exists():
-            break
-        i += 1
+
+    zip_files = [
+        sub(r'\D*(\d+).zip', r'\1', str(file.name)) 
+        for file in destination_path.glob('*.zip')
+    ]
+    zip_files.sort()
+    zip_files = list(map(int, zip_files))
+    if len(zip_files) == 0:
+        zip_files = [0]
+
+    zip_file_name = '{}_{}.zip'.format(
+        file_to_backup, zip_files[-1] + 1 
+    )
+    zip_file_path = destination_path / zip_file_name
     
     print('Creating new zip file {}'.format(str(zip_file_path.name)))
 
