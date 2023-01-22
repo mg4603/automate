@@ -6,6 +6,7 @@
 '''
 from pathlib import Path
 from re import escape, compile
+from shutil import copy
 
 def get_src_path():
     print('Enter src path dir to copy files from:')
@@ -18,6 +19,15 @@ def get_src_path():
             print('Source path isn\'t a directory')
         else:
             print('Source path doesn\'t exist.')
+
+def copy_files(src_path, dest_path, ext_reg):
+    print('Copying files:')
+
+    for file in src_path.glob('*'):
+        if ext_reg.search(file.name):
+            print(file)
+            copy(file, dest_path.absolute())
+
 
 def main():
     print('Selective Copy')
