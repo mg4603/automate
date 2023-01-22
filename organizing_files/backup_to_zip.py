@@ -7,10 +7,18 @@
 '''
 from pathlib import Path
 
+def get_zip_src():
+    print('Enter file or directory to backup:')
+    while True:
+        name = input('> ')
+        if Path(name).exists():
+            return Path(name)
+        print('No such file or directory exists.')
+
 def main():
     print('Backup to Zip')
     print()
-    path = get_path_backup()
+    path = get_zip_src()
     print('Enter directory to write backup to:')
     destination_name = input('> ')
     destination_path = Path(
