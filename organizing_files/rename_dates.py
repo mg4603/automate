@@ -3,7 +3,19 @@
 2) Id files with names in european date style
 3) rename files to american date style
 '''
+from re import compile, VERBOSE
 
+american_date_regex = compile(
+    r'''
+    (0[1-9]|1[0-2])
+    -
+    (0[1-9]|12[0-9]|3[0-1])
+    -
+    ([12]\d{3})
+    (.*?)$
+    ''',
+    VERBOSE
+)
 def main():
     print('Rename Date files')
     print()
