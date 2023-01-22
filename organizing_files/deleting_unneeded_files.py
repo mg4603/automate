@@ -7,6 +7,18 @@
 from pathlib import Path
 from os import walk
 
+def get_src_path():
+    print('Enter source directory path to check for large files:')
+    while True:
+        dir_name = input('> ')
+        dir_path = Path(dir_name)
+        if dir_path.exists():
+            if dir_path.is_dir():
+                return dir_path
+            print('Entered path doesn\'t point to a directory.')
+        else:
+            print('Directory doesn\'t exist.')
+
 
 def main():
     print('Finding Large Files')
