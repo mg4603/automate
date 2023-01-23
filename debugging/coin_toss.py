@@ -1,24 +1,30 @@
 from random import randint
 from logging import debug, DEBUG, disable, basicConfig, CRITICAL
 basicConfig(level=DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
-# disable(CRITICAL)
+disable(CRITICAL)
 
 def get_guess():
     while True:
         guess = input('> ')
+        debug('Guess input val: {}'.format(guess))
         if guess in ('heads', 'tails'):
-            return guess
+            if guess == 'heads':
+                return 1
+            else:
+                return 0
         print('Invalid input.')
 
 def main():
     print('Guess the coin toss! Enter head or tails:')
     guess = get_guess()
     toss = randint(0, 1)
+    debug('Toss:  {}'.format(toss))
+    debug('Guess: {}'.format(guess))
     if toss == guess:
         print('You got it!')
     else:
         print('Nope! Guess again!')
-        guesss = get_guess()
+        guess = get_guess()
         if toss == guess:
             print('You got it!')
         else:
