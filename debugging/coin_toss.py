@@ -3,6 +3,13 @@ from logging import debug, DEBUG, disable, basicConfig, CRITICAL
 basicConfig(level=DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 # disable(CRITICAL)
 
+def get_guess():
+    while True:
+        guess = input('> ')
+        if guess in ('heads', 'tails'):
+            return guess
+        print('Invalid input.')
+
 def main():
     print('Guess the coin toss! Enter head or tails:')
     guess = get_guess()
