@@ -18,14 +18,17 @@ try:
 except ImportError:
     exit('This program requires the requests module to run.')
 basicConfig(level=DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
-# disable(CRITICAL)
+disable(CRITICAL)
 
 def parse_args():
     parser = ArgumentParser()
     parser.add_argument('--num-of-pages', required=False)
 
     args = parser.parse_args()
-    num_of_pages = args.num_of_pages
+    try:
+        num_of_pages = int(args.num_of_pages)
+    except:
+        num_of_pages = None
     if num_of_pages == None:
         num_of_pages = -1
     return {'num': num_of_pages}
@@ -46,6 +49,7 @@ def main():
     args = parse_args()
     num_of_pages = args['num']
     link = ''
+    print('Starting Downloads')
     while True:
         res = get('https://xkcd.com/{}'.format(link))
         soup_object = BeautifulSoup(res.text, 'html.parser')
@@ -60,7 +64,8 @@ def main():
         num_of_pages -= 1
         if num_of_pages == 0 or link == '#':
             break
-
+    
+    print('Done')
 
 
 if __name__ == '__main__':
