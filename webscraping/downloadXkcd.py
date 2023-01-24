@@ -30,6 +30,14 @@ def parse_args():
         num_of_pages = -1
     return {'num': num_of_pages}
 
+def download_save_img(download_dir, img_link):
+    img = get('https:{}'.format(img_link), stream=True)
+    img_name = img_link.split('/')[-1]
+    print('Downloading {}'.format(img_name))
+    with (download_dir / img_name).open('wb') as file:
+        for chunk in img.iter_content(100_000):
+            file.write(chunk)
+
 def main():
     print('Download xkcd')
     download_dir = Path('.').absolute() / 'xkcd'
@@ -42,9 +50,9 @@ def main():
         res = get('https://xkcd.com/{}'.format(link))
         soup_object = BeautifulSoup(res.text, 'html.parser')
         img_link = soup_object.select('#comic > img')[0].get('src')
+
         debug(img_link)
-        img = get('https:{}'.format(img_link))
-        save_img(img, download_dir)
+        download_save_img(download_dir, img_link)
 
         link = soup_object.select('ul.comicNav a[rel="prev"]')[0].get('href')
         debug(link)
