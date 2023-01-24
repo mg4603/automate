@@ -20,7 +20,7 @@ def parse_args():
 
         return {'location': paste()}
         
-    return parser.parse_args()
+    return {'location': args.location}
 
 def main():
     print('Google Maps Search')
