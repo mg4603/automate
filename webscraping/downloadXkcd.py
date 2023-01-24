@@ -20,13 +20,22 @@ except ImportError:
 basicConfig(level=DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 # disable(CRITICAL)
 
+def parse_args():
+    parser = ArgumentParser()
+    parser.add_argument('--num-of-pages', required=False)
+
+    args = parser.parse_args()
+    num_of_pages = args.num_of_pages
+    if num_of_pages == None:
+        num_of_pages = -1
+    return {'num': num_of_pages}
+
 def main():
     print('Download xkcd')
     download_dir = Path('.').absolute() / 'xkcd'
     download_dir.mkdir(parents=True, exist_ok=True)
 
-    # args = parse_args()
-    args = {'num': 1}
+    args = parse_args()
     num_of_pages = args['num']
     link = ''
     while True:
