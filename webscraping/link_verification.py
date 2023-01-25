@@ -70,8 +70,36 @@ def download_page(download_path, link):
             file.write(chunk)
     return True
 
+def main():
+    print('Link Verification')
+    print()
+    
+    url = parse_args()['url']
+    debug(url)
 
 
+    print('Enter download destination:')
+    destination_name = input('> ')
+    
+    destination_path = Path(destination_name) / '{}.d'.format(
+        urlparse(url).hostname
+    )
+    destination_path.mkdir(parents=True, exist_ok=True)
+
+    broken_links_path = destination_path / 'broken_links.txt'
+
+    res = get(url)
+    soup_obj = BeautifulSoup(res.text, 'html.parser')
+
+    links = soup_obj.select('a')
+    print('Starting downloads:')
+    for link in links:
+        print('Downloading {}..'.format(link.get('href')))
+        if not download_page(destination_path, link.get('href')):
+            with broken_links_path.open('a') as file:
+                file.write(link.get('href') + '\n')
+    
+    print('Done')
 
 if __name__ == '__main__':
     main()
