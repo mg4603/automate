@@ -2,6 +2,7 @@
 1) Get location to search for from commandline or clipboard
 2) open webbrowser and search for it at https://www.google.com/maps/search/
 '''
+from sys import exit
 from webbrowser import open
 from argparse import ArgumentParser
 try:

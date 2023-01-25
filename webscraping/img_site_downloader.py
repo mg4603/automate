@@ -4,6 +4,7 @@
 3) search for images
 4) download images that match category
 '''
+from sys import exit
 from argparse import ArgumentParser
 from pathlib import Path
 from logging import debug, DEBUG, CRITICAL, disable, basicConfig
