@@ -25,5 +25,12 @@ def parse_args():
         category = paste()
     return {'category': category}
 
+def get_save_img(destination_path, img_link):
+    img = get('https:{}'.format(img_link), stream=True)
+    img_name = img_link.split('/')[-1]
+    with (destination_path / img_name).open('wb') as file:
+        for chunk in img.iter_content(100_000):
+            file.write(chunk)
+
 if __name__ == '__main__':
     main()
