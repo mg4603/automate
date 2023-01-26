@@ -8,7 +8,7 @@ except ImportError:
     exit('This program requires teh openpyxl module to run.')
 
 basicConfig(level=DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
-# disable(CRITICAL)
+disable(CRITICAL)
 
 def main():
     print('Multiplication Table xlsx')
@@ -44,3 +44,5 @@ def main():
     
     wb.save('multiplication_table.xlsx')
 
+if __name__ == '__main__':
+    main()
