@@ -8,7 +8,7 @@ except ImportError:
     exit('This program requires PyPDF2 to run.')
 
 basicConfig(level=DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
-disable(CRITICAL)
+# disable(CRITICAL)
 
 def parse_args():
     parser = ArgumentParser()
@@ -31,24 +31,31 @@ def main():
     pdf_files = list(dir_path.glob('*.pdf'))
     pdf_files.sort()
 
-    with open(pdf_files[0], 'rb') as first_file:
-        first_page = PdfFileReader(first_file).getPage(0)
-        pdf_writer.addPage(first_page)
+    first_file = pdf_files[0].open('rb')
+    first_page = PdfFileReader(first_file).getPage(0)
+    debug(first_page.extractText())
+    pdf_writer.addPage(first_page)
+    first_file.close()
 
     debug(pdf_writer.getNumPages())
+
     for file in pdf_files:
-        with file.open('rb') as file_obj:
-            pdf_reader = PdfFileReader(file_obj)
-            if pdf_reader.isEncrypted:
-                continue
-            for page_num in range(1, pdf_reader.numPages):
-                pdf_writer.addPage(pdf_reader.getPage(page_num))
-    
+        file_obj = file.open('rb')
+
+        pdf_reader = PdfFileReader(file_obj)
+        if pdf_reader.isEncrypted:
+            continue
+
+        for page_num in range(1, pdf_reader.numPages):
+            page_obj = pdf_reader.getPage(page_num)
+            pdf_writer.addPage(page_obj)    
+            
     debug(pdf_writer.getNumPages())
 
     result_file = dir_path / 'merged_pdfs.pdf'
-    with result_file.open('wb') as file_obj:
-        pdf_writer.write(file_obj)
+    file_obj = result_file.open('wb')
+    pdf_writer.write(file_obj)
+    file_obj.close()
 
     print('Done')
 
