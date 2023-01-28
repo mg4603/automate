@@ -41,7 +41,7 @@ def main():
             pdf_reader = PdfFileReader(file_obj)
             if pdf_reader.isEncrypted:
                 continue
-            for page_num in range(pdf_reader.numPages):
+            for page_num in range(1, pdf_reader.numPages):
                 pdf_writer.addPage(pdf_reader.getPage(page_num))
     
     debug(pdf_writer.getNumPages())
