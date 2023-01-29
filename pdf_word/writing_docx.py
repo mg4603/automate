@@ -10,6 +10,13 @@ def hello_world():
     doc.add_paragraph('Hello, world!')
     doc.save('hello_world.docx')
 
+def multiple_paragraphs():
+    doc = Document()
+    doc.add_paragraph('Hello, World!')
+    para_obj1 = doc.add_paragraph('This is a second paragraph.')
+    para_obj2 = doc.add_paragraph('This is yet another paragraph.')
+    para_obj1.add_run(' This text is being added to the second paragraph.')
+    doc.save('multiple_paragraphs.docx')
 
-
+multiple_paragraphs()
 # hello_world()
