@@ -1,6 +1,7 @@
 from sys import exit
 try:
     from docx import Document
+    from docx.enum.text import WD_BREAK
 except ImportError:
     exit('This program requires python-docx to run.')
 
@@ -27,6 +28,14 @@ def headings():
     doc.add_heading('Header 4', 4)
     doc.save('headings.docx')
 
+def two_page():
+    doc = Document()
+    doc.add_paragraph('This is on the first page!')
+    doc.paragraphs[0].runs[0].add_break(WD_BREAK.PAGE)
+    doc.add_paragraph('This is on the second page!')
+    doc.save('two_page.docx')
+
+# two_page()
 # headings()
 # multiple_paragraphs()
 # hello_world()
