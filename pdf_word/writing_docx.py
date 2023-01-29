@@ -2,6 +2,7 @@ from sys import exit
 try:
     from docx import Document
     from docx.enum.text import WD_BREAK
+    from docx.shared import Cm
 except ImportError:
     exit('This program requires python-docx to run.')
 
@@ -35,6 +36,12 @@ def two_page():
     doc.add_paragraph('This is on the second page!')
     doc.save('two_page.docx')
 
+def img_docx():
+    doc = Document()
+    doc.add_picture('zophie.png', width=Cm(4), height=Cm(4))
+    doc.save('img_doc.docx')
+
+# img_docx()
 # two_page()
 # headings()
 # multiple_paragraphs()
