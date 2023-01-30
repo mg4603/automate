@@ -19,5 +19,20 @@ def parse_args():
     return parser.parse_args()
 
 
+def main():
+    args = parse_args()
+    print('Pdf Paranoia')
+    print()
+
+    password = get_password()
+    if args.encrypt:
+        print('Encrypting...')
+        encrypt(args.dir_path)
+    else:
+        print('Decrypting...')
+        decrypt(args.dir_path)
+
+    print('Done')
+
 if __name__ == '__main__':
     main()
