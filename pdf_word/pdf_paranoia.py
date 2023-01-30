@@ -18,6 +18,10 @@ def parse_args():
     )
     return parser.parse_args()
 
+def get_password(filename):
+    print('Enter password for {}:'.format(filename))
+    password = input('> ')
+    return password
 
 def main():
     args = parse_args()
