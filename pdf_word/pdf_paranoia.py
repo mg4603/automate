@@ -41,6 +41,32 @@ def encrypt(directory_name):
             (encrypted_dir / (file.stem + '_encrypted.pdf')).open('wb')
         )
 
+def decrypt(directory_name):
+    dir_path = Path(directory_name).absolute()
+    decrypted_dir = dir_path / 'decrypted'
+    decrypted_dir.mkdir(parents=True, exist_ok=True)
+    for file in dir_path.glob('*.pdf'):
+        pdf_reader = PdfFileReader(file.open('rb'))
+        if not pdf_reader.isEncrypted:
+            continue
+
+        password = get_password(file.name)
+        if not pdf_reader.decrypt(password):
+            print('Wrong password for {}'.format(file.name))
+            print('Skipping....')
+            print()
+            continue
+        pdf_writer = PdfFileWriter()
+
+        for page_num in range(pdf_reader.numPages):
+            pdf_writer.addPage(pdf_reader.getPage(page_num))
+        
+        pdf_writer.write(
+            (decrypted_dir / (file.stem + '_decrypted.pdf')).open('wb')
+        )
+
+        
+
 
 def main():
     args = parse_args()
