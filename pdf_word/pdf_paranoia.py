@@ -23,12 +23,30 @@ def get_password(filename):
     password = input('> ')
     return password
 
+def encrypt(directory_name):
+    dir_path = Path(directory_name).absolute()
+    encrypted_dir = dir_path / 'encrypted'
+    encrypted_dir.mkdir(parents=True, exist_ok=True)
+    for file in dir_path.glob('*.pdf'):
+        pdf_reader = PdfFileReader(file.open('rb'))
+        if pdf_reader.isEncrypted:
+            continue
+        pdf_writer = PdfFileWriter()
+        for page_num in range(pdf_reader.numPages):
+            pdf_writer.addPage(pdf_reader.getPage(page_num))
+        
+        password = get_password(file.name)
+        pdf_writer.encrypt(password)
+        pdf_writer.write(
+            (encrypted_dir / (file.stem + '_encrypted.pdf')).open('wb')
+        )
+
+
 def main():
     args = parse_args()
     print('Pdf Paranoia')
     print()
 
-    password = get_password()
     if args.encrypt:
         print('Encrypting...')
         encrypt(args.dir_path)
