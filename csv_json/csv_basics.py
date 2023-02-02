@@ -1,4 +1,4 @@
-from csv import reader, writer
+from csv import reader, writer, DictReader, DictWriter
 from pathlib import Path
 
 def csv_as_list(filename):
@@ -31,6 +31,14 @@ def tsv(filename):
             ['spam', 'spam', 'spam', 'spam', 'spam', 'spam']
         )
 
+def read_with_dictreader(filename):
+    with Path(filename).open('r') as file:
+        example_reader = DictReader(file)
+        for row in example_reader:
+            print(row['Timestamp'], row['Fruit'], row['Quantity'])
+
+
+# read_with_dictreader('examples_with_header.csv')
 # tsv('example.tsv')
 # write_csv('output.csv')
 # read_with_for_loop('example.csv')
