@@ -43,6 +43,26 @@ def dictreader_no_header(filename):
         for row in example_reader:
             print(row['time'], row['name'], row['amount'])
 
+def write_with_dictwriter(filename):
+    with Path(filename).open('w') as file:
+        example_writer = DictWriter(file, ['Name', 'Pet', 'Phone'])
+        example_writer.writeheader()
+        example_writer.writerow({
+            'Name': 'Alice',
+            'Pet': 'cat',
+            'Phone': '555-1234'
+            })
+        example_writer.writerow({
+            'Name': 'Bob',
+            'Phone': '555-9999'
+        })
+        example_writer.writerow({
+            'Phone': '555-5555',
+            'Name': 'Carol',
+            'Pet': 'dog'
+        })
+
+# write_with_dictwriter('dict_writer_output.csv')
 # dictreader_no_header('example.csv')
 # read_with_dictreader('examples_with_header.csv')
 # tsv('example.tsv')
