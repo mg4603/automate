@@ -13,6 +13,13 @@ def read_with_for_loop(filename):
         for row in csv_reader:
             print('Row #{} {}'.format(csv_reader.line_num, row))
 
+def write_csv(filename):
+    with Path(filename).open('w', newline='') as file:
+        csv_writer = writer(file)
+        csv_writer.writerow(['spam', 'eggs', 'bacon', 'ham'])
+        csv_writer.writerow(['Hello, world!', 'eggs', 'bacon', 'ham'])
+        csv_writer.writerow([1, 2, 3.141592, 4])
 
+# write_csv('output.csv')
 # read_with_for_loop('example.csv')
 # print(csv_as_list('example.csv'))
