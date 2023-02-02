@@ -20,6 +20,18 @@ def write_csv(filename):
         csv_writer.writerow(['Hello, world!', 'eggs', 'bacon', 'ham'])
         csv_writer.writerow([1, 2, 3.141592, 4])
 
+def tsv(filename):
+    with Path(filename).open('w') as file:
+        example_writer = writer(
+            file, delimiter='\t', lineterminator='\n\n'
+        )
+        example_writer.writerow(['apples', 'oranges', 'grapes'])
+        example_writer.writerow(['eggs', 'bacon', 'ham'])
+        example_writer.writerow(
+            ['spam', 'spam', 'spam', 'spam', 'spam', 'spam']
+        )
+
+# tsv('example.tsv')
 # write_csv('output.csv')
 # read_with_for_loop('example.csv')
 # print(csv_as_list('example.csv'))
