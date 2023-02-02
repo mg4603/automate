@@ -62,6 +62,25 @@ def write_with_dictwriter(filename):
             'Pet': 'dog'
         })
 
+def dictwriter_no_header(filename):
+    with Path(filename).open('w') as file:
+        example_writer = DictWriter(file, ['Name', 'Age', 'Pet'])
+        example_writer.writerow({
+            'Name': 'Alice',
+            'Age': 15,
+            'Pet': 'cat'
+        })
+        example_writer.writerow({
+            'Name': 'Bob',
+            'Age': 23
+        })
+        example_writer.writerow({
+            'Name': 'Carol',
+            'Age': 57,
+            'Pet': 'dog'
+        })
+
+# dictwriter_no_header('dictwriter_no_header_output.csv')
 # write_with_dictwriter('dict_writer_output.csv')
 # dictreader_no_header('example.csv')
 # read_with_dictreader('examples_with_header.csv')
