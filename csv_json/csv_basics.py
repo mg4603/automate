@@ -37,7 +37,13 @@ def read_with_dictreader(filename):
         for row in example_reader:
             print(row['Timestamp'], row['Fruit'], row['Quantity'])
 
+def dictreader_no_header(filename):
+    with Path(filename).open('r') as file:
+        example_reader = DictReader(file, ['time', 'name', 'amount'])
+        for row in example_reader:
+            print(row['time'], row['name'], row['amount'])
 
+# dictreader_no_header('example.csv')
 # read_with_dictreader('examples_with_header.csv')
 # tsv('example.tsv')
 # write_csv('output.csv')
