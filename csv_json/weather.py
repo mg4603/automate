@@ -7,5 +7,13 @@
 from argparse import ArgumentParser
 from json import loads
 
+def parse_args():
+    parser = ArgumentParser()
+    parser.add_argument(
+        'location', help='location to query weather of'
+    )
+    return parser.parse_args()
+    
+
 if __name__ == '__main__':
     main()
