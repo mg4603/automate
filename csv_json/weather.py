@@ -24,6 +24,29 @@ def parse_args():
     )
     return parser.parse_args()
 
+def process_responses(res_forecast, res_current_weather):
+    debug(loads(res_forecast.text)['list'][0])
+    debug(loads(res_forecast.text)['list'][8])
+    debug(res_current_weather.text)
+
+    res_forecast = loads(res_forecast.text)
+    res_current_weather = loads(res_current_weather.text)
+    weather_data = []
+    current_weather_data = {
+        'main': res_current_weather['weather'][0]['main'],
+        'description': res_current_weather['weather'][0]['description']
+    }
+    weather_data.append(current_weather_data)
+    i = 0
+    while len(weather_data) < 3:
+        weather_data.append({
+            'main': res_forecast['list'][i]['weather'][0]['main'],
+            'description': res_forecast['list'][i]['weather'][0]['description']
+        }) 
+        i += 8
+    
+    debug(weather_data)
+    return weather_data
 
 def main():
     print('Fetching Current Weather Data')
