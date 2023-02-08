@@ -11,7 +11,7 @@ from dotenv import dotenv_values
 from requests import get
 
 basicConfig(level=DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
-# disable(CRITICAL)
+disable(CRITICAL)
 
 FORECAST_URL = 'https://api.openweathermap.org/data/2.5/forecast?q={}&appid={}'
 CURRENT_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?q={}&appid={}'
@@ -48,6 +48,18 @@ def process_responses(res_forecast, res_current_weather):
     debug(weather_data)
     return weather_data
 
+def display_weather(location, weather):
+    print('The weather at {} for:'.format(location.title()))
+
+    print('Today:')
+    print('\t', weather[0]['main'], '-', weather[0]['description'])
+
+    print('\nTomorrow:')
+    print('\t', weather[1]['main'], '-', weather[1]['description'])
+
+    print('\nDay after tomorrow:')
+    print('\t', weather[2]['main'], '-', weather[2]['description'])
+
 def main():
     print('Fetching Current Weather Data')
     print()
@@ -66,7 +78,7 @@ def main():
 
     weather = process_responses(res_forecast, res_current_weather)
 
-    display_weather(weather)
+    display_weather(location, weather)
 
 
     print('Done')
