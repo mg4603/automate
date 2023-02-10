@@ -14,13 +14,19 @@ try:
 except ImportError:
     exit('This program requires the openpyxl module to run.')
 basicConfig(level=DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
-# disable(CRITICAL)
+disable(CRITICAL)
 
 def parse_args():
     parser = ArgumentParser()
     parser.add_argument('dir', help='path to dir of xlsx files to convert')
     return parser.parse_args()
 
+def get_files(location):
+    files = []
+    for file in Path(location).absolute().glob('*.xlsx'):
+        debug(file)
+        files.append(file)
+    return files
 
 def main():
     args = parse_args()
