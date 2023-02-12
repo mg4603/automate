@@ -6,3 +6,12 @@ def calc_prod():
     for i in range(1, 100_000):
         product *= i
     return product
+
+def profile_calc_prod():
+    start_time = time()
+
+    prod = calc_prod()
+    end_time = time()
+
+    print('The result is {} digits long.'.format(len(str(prod))))
+    print('Took {} secs to calculate.'.format(end_time - start_time))
