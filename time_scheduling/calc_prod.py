@@ -15,3 +15,6 @@ def profile_calc_prod():
 
     print('The result is {} digits long.'.format(len(str(prod))))
     print('Took {} secs to calculate.'.format(end_time - start_time))
+
+if __name__ == '__main__':
+    main()
