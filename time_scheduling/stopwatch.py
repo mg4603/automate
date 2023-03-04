@@ -7,3 +7,9 @@ from time import time
 class StopWatch:
     def __init__(self):
         pass
+
+    def display_intro(self):
+        print('Press ENTER to begin.')
+        print('Afterward, press ENTER to "click" the stopwatch.')
+        print('Press Ctrl-C to quit.')
+        print()
