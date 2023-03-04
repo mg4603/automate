@@ -3,6 +3,7 @@
 2. print lap number, total time, lap time
 '''
 from time import time
+from sys import exit
 
 class StopWatch:
     def __init__(self):
@@ -13,3 +14,11 @@ class StopWatch:
         print('Afterward, press ENTER to "click" the stopwatch.')
         print('Press Ctrl-C to quit.')
         print()
+
+
+def main():
+    stopwatch = StopWatch()
+    try:
+        stopwatch.stopwatch()
+    except KeyboardInterrupt:
+        exit()
