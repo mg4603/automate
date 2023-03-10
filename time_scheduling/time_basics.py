@@ -30,8 +30,14 @@ def datetime_obj(
         str(dt.second).zfill(2), dt.day, dt.month, dt.year
     ))
 
+def timestamp_dt(timestamp):
+    dt = datetime.fromtimestamp(timestamp)
+    datetime_obj(*(dt.year, dt.month, dt.day, 
+                   dt.hour, dt.minute, dt.second
+                ))
 
-
+# timestamp_dt(time())
+# timestamp_dt(10000000)
 # datetime_obj(2003, 3, 12)
 # datetime_obj(2003, 3, 12, 1)
 # datetime_obj(2003, 3, 12, 1, 3)
