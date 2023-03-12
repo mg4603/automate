@@ -36,6 +36,26 @@ def timestamp_dt(timestamp):
                    dt.hour, dt.minute, dt.second
                 ))
 
+def dt_comparison(dt_one, dt_two):
+    if dt_one > dt_two:
+        datetime_obj(*(dt_one.year, dt_one.month, dt_one.day,
+                       dt_one.hour, dt_one.minute, dt_one.second
+                ))
+        print('comes later')
+    elif dt_two > dt_one:
+        datetime_obj(*(dt_two.year, dt_two.month, dt_two.day,
+                       dt_two.hour, dt_two.minute, dt_two.second
+                ))
+        print('comes later')
+    else:
+        print('Date time objects are identical')
+
+halloween2019 = datetime(2019, 10, 31, 0, 0, 0)
+newyears2020 = datetime(2020, 1, 1, 0, 0, 0)
+oct31_2019 = datetime(2019, 10, 31, 0, 0, 0)
+
+# dt_comparison(halloween2019, oct31_2019)
+# dt_comparison(halloween2019, newyears2020)
 # timestamp_dt(time())
 # timestamp_dt(10000000)
 # datetime_obj(2003, 3, 12)
