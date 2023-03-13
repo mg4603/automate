@@ -1,5 +1,5 @@
 from time import sleep, time
-from datetime import datetime
+from datetime import datetime, timedelta
 
 def sleep_sample():
     for i in range(3):
@@ -54,6 +54,12 @@ halloween2019 = datetime(2019, 10, 31, 0, 0, 0)
 newyears2020 = datetime(2020, 1, 1, 0, 0, 0)
 oct31_2019 = datetime(2019, 10, 31, 0, 0, 0)
 
+def add_time_delta(dt_obj, delta):
+    dt_obj += delta
+    datetime_obj(*(dt_obj.year, dt_obj.month, dt_obj.day,
+                   dt_obj.hour, dt_obj.minute, dt_obj.second))
+
+# add_time_delta(datetime.now(), timedelta(days=1000))
 # dt_comparison(halloween2019, oct31_2019)
 # dt_comparison(halloween2019, newyears2020)
 # timestamp_dt(time())
