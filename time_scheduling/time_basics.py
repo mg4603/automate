@@ -1,5 +1,8 @@
 from time import sleep, time
 from datetime import datetime, timedelta
+from logging import debug, disable, basicConfig,DEBUG, CRITICAL
+basicConfig(level=DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+# disable(CRITICAL)
 
 def sleep_sample():
     for i in range(3):
@@ -64,6 +67,14 @@ def sub_time_delta(dt_obj, time_delta):
     datetime_obj(*(dt_obj.year, dt_obj.month, dt_obj.day,
                    dt_obj.hour, dt_obj.minute, dt_obj.second))
 
+def schedule(dt_obj):
+    while datetime.now() < dt_obj:
+        debug(datetime.now())
+        sleep(1)
+
+
+
+# schedule(datetime.now() + timedelta(seconds=10))
 # sub_time_delta(datetime.now(), timedelta(days=365))
 # add_time_delta(datetime.now(), timedelta(days=1000))
 # dt_comparison(halloween2019, oct31_2019)
