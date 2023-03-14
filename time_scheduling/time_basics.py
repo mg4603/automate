@@ -59,6 +59,12 @@ def add_time_delta(dt_obj, delta):
     datetime_obj(*(dt_obj.year, dt_obj.month, dt_obj.day,
                    dt_obj.hour, dt_obj.minute, dt_obj.second))
 
+def sub_time_delta(dt_obj, time_delta):
+    dt_obj -= time_delta
+    datetime_obj(*(dt_obj.year, dt_obj.month, dt_obj.day,
+                   dt_obj.hour, dt_obj.minute, dt_obj.second))
+
+# sub_time_delta(datetime.now(), timedelta(days=365))
 # add_time_delta(datetime.now(), timedelta(days=1000))
 # dt_comparison(halloween2019, oct31_2019)
 # dt_comparison(halloween2019, newyears2020)
