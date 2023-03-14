@@ -72,8 +72,10 @@ def schedule(dt_obj):
         debug(datetime.now())
         sleep(1)
 
+def dt_print(dt_obj):
+    print(dt_obj.strftime('%d/%m/%Y %H:%M:%S'))
 
-
+# dt_print(datetime.now())
 # schedule(datetime.now() + timedelta(seconds=10))
 # sub_time_delta(datetime.now(), timedelta(days=365))
 # add_time_delta(datetime.now(), timedelta(days=1000))
