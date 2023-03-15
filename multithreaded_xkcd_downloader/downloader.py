@@ -29,8 +29,27 @@ def download(download_path, start_num, end_num):
                 img_file.write(chunk)
 
 
+def main():
+    downloads_path = Path('downloads')
+    downloads_path.mkdir(exist_ok=True, parents=True)
+    
+    res = get('https://xkcd.com/')
+    res.raise_for_status()
 
+    soup = BeautifulSoup(res.text, 'html.parser')
+    debug(soup.select('.comicNav a[rel=prev]')[0].get('href'))
+    number_of_comics = int(soup.select('.comicNav a[rel=prev]')[0].get('href')[1:-1])
+    debug(number_of_comics)
 
+    download_threads = []
+    for i in range(1, number_of_comics + 1, 10):
+        download_thread = Thread(target=download, args=[downloads_path, i, i + 9])
+        download_threads.append(download_thread)
+        download_thread.start()
+       
+    for download_thread in download_threads:
+        download_thread.join()
+    print('Done.')
 
 if __name__ == '__main__':
     main()    
