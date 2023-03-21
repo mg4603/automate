@@ -12,4 +12,10 @@ def open_calc():
     # returns 0 once process is stopped
     debug(proc.poll())
 
-open_calc()
+def run_py_script(script_loc):
+    proc = Popen(['python3',*split(script_loc)])
+    proc.wait()
+    debug('run py script fn')
+
+# run_py_script('sample.py')
+# open_calc()
