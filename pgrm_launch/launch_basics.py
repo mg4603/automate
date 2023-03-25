@@ -17,5 +17,11 @@ def run_py_script(script_loc):
     proc.wait()
     debug('run py script fn')
 
+def open_with_def(file):
+    proc = Popen(split('see %s' % file))
+    proc.wait()
+    debug(split('see %s' % file))
+
+# open_with_def('sample.txt')
 # run_py_script('sample.py')
 # open_calc()
