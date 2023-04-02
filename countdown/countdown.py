@@ -9,6 +9,17 @@ from logging import debug, basicConfig, disable, DEBUG, CRITICAL
 basicConfig(level=DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 # disable(CRITICAL)
 
+def get_num(prompt):
+    while True:
+        num = input(prompt)
+        try:
+            num = int(num)
+            if (0 <= num <=60):
+                return num
+            print('Invalid input: 0-60')
+        except:
+            print('Invalid input: enter a number')
+
 def get_countdown_time():
     print('Enter hours:')
     prompt = '> '
@@ -17,12 +28,15 @@ def get_countdown_time():
     m = get_num(prompt)
     print('Enter seconds:')
     s = get_num(prompt)
+    debug('hours: %s' % h)
+    debug('minutes: %s' % m)
+    debug('seconds: %s' % s)
     return h, m, s
-    
+
 def main():
     print('Countdown Timer')
     h, m, s = get_countdown_time()
-    countdown(h, m, s)
+    # countdown(h, m, s)
     proc = Popen(split('see '))
     proc.wait()
 
